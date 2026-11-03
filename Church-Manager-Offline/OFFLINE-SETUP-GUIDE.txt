@@ -1,0 +1,26 @@
+CHURCH MANAGER — OFFLINE EDITION SETUP GUIDE
+=============================================
+
+This edition is completely separate from the LAN + Tailscale edition.
+It does not require Node.js, a server, LAN, Tailscale or Internet access.
+
+SETUP
+1. Extract the Church-Manager-Offline folder.
+2. Double-click index.html.
+3. If Windows asks which browser to use, choose Chrome, Edge or another trusted browser.
+4. Use this edition on one computer only.
+
+BACKUP
+1. Open the app.
+2. Click Export Backup.
+3. Save the JSON file to an external drive or secure cloud storage.
+4. Repeat after important record changes.
+
+RESTORE
+1. Open the app.
+2. Select the previous JSON backup.
+3. Click Restore Backup.
+4. Confirm the restore.
+
+IMPORTANT
+Browser data can be lost if browser storage is cleared, the browser profile is removed, or the computer fails. Export backups regularly.
