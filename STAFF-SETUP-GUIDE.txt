@@ -1,0 +1,24 @@
+CHURCH MANAGER — STAFF SETUP GUIDE
+==================================
+
+ONLY THE OWNER CREATES STAFF ACCOUNTS.
+
+1. Owner signs in.
+2. Open Staff Accounts.
+3. Enter staff name.
+4. Create a unique username.
+5. Create a strong password of at least 8 characters.
+6. Choose the role.
+7. Give the staff member their own credentials privately.
+
+ROLES
+Admin — broad operational access except Owner-only controls.
+Secretary — members, attendance, events and announcements.
+Treasurer — giving and reports.
+Worker — members and attendance.
+
+PASSWORD RULE
+Never send passwords in a public group chat. If a password is forgotten, the Owner should reset it.
+
+ACCOUNT RULE
+Never create one shared username such as reception for several people. Individual accounts make the audit trail useful.

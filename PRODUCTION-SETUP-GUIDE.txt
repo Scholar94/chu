@@ -1,0 +1,61 @@
+CHURCH MANAGER — PRODUCTION SETUP GUIDE
+=======================================
+
+EDITION A: OFFLINE
+------------------
+1. Extract Church-Manager-Offline.
+2. Double-click index.html.
+3. Use it on one computer only.
+4. Keep backups of its local data if the edition provides export/backup.
+
+EDITION B: LAN + TAILSCALE
+---------------------------
+HOST COMPUTER
+1. Install Node.js LTS on the host computer.
+2. Extract Church-Manager-LAN-Tailscale.
+3. Right-click INSTALL-FIREWALL.bat > Run as administrator.
+4. Double-click START-SILENT.vbs.
+5. Browser opens at http://localhost:3000.
+6. Enter the vendor activation key supplied by the license generator.
+7. Create the church name, Owner/Pastor name, Owner username and a strong password.
+8. There is NO default pastor/pastor123 account.
+
+LAN COMPUTERS
+1. Connect to the same trusted church network.
+2. Find the host LAN IPv4 address with ipconfig.
+3. On another computer open http://HOST-LAN-IP:3000.
+4. Sign in using the staff account created by the Owner.
+
+TAILSCALE REMOTE ACCESS
+1. Install Tailscale on the host and each authorized remote device.
+2. Sign in to the same trusted tailnet.
+3. On the host run: tailscale ip -4
+4. Example result: 100.64.10.20
+5. On a remote phone/laptop with Tailscale connected open:
+   http://100.64.10.20:3000
+6. Do NOT port-forward TCP 3000 to the public internet.
+7. The host computer must be powered on and Church Manager must be running.
+
+OWNER / STAFF
+1. Owner is the only role that can create staff accounts.
+2. Staff roles: Admin, Secretary, Treasurer, Worker.
+3. Staff permissions are limited by role.
+4. Owner can reset staff passwords.
+5. Audit records are visible to Owner.
+6. Staff passwords are stored as salted scrypt hashes, not plain text.
+
+BACKUP
+1. Stop the server before copying data.json and license.json.
+2. Keep encrypted/offline copies of backups.
+3. Test restoration periodically.
+4. Never send data.json to an untrusted person; it contains church records.
+
+TROUBLESHOOTING
+- Browser cannot open: confirm START-SILENT.vbs was run and test http://localhost:3000.
+- LAN cannot connect: run INSTALL-FIREWALL.bat as Administrator and confirm both devices are on the same LAN.
+- Tailscale cannot connect: confirm Tailscale is connected on both devices and the host IP is correct.
+- Remote phone cannot connect: host must be powered on; do not use the LAN 192.168.x.x address remotely.
+- Port already in use: close another Church Manager/node server or change PORT before starting.
+
+SECURITY NOTE
+This package is designed for controlled church LAN/Tailscale deployment. Keep Windows updated, use strong Owner passwords, restrict Tailscale membership, protect backups, and do not expose port 3000 directly to the internet.

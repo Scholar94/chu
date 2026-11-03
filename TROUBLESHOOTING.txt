@@ -1,0 +1,44 @@
+CHURCH MANAGER — TROUBLESHOOTING
+================================
+
+1. localhost:3000 DOES NOT OPEN
+- Start Church Manager using the desktop shortcut.
+- Try START-CHURCH-MANAGER.bat.
+- Confirm Node.js is installed: node -v
+- Confirm no other application is using port 3000.
+
+2. WINDOWS SAYS SCRIPT ACCESS IS DISABLED
+Do not rely on START-SILENT.vbs.
+Run CREATE-DESKTOP-SHORTCUT.bat and use the Church Manager desktop shortcut.
+
+3. LAN COMPUTER CANNOT CONNECT
+- Confirm host and client are on the same LAN.
+- Run ipconfig on host.
+- Use the host IPv4 address followed by :3000.
+- Run INSTALL-FIREWALL.bat as Administrator.
+
+4. PHONE CANNOT CONNECT
+- Confirm Tailscale is ON on both devices.
+- Confirm the host is powered on.
+- Run tailscale ip -4 on host.
+- Use the 100.x.x.x address with :3000.
+- Do not use the LAN 192.168.x.x address remotely.
+
+5. ACTIVATION KEY REJECTED
+- Make sure the complete key was copied.
+- Check that it is a 1-Year or Lifetime key.
+- Ask the vendor to regenerate the key if it was damaged during copying.
+- Do not edit characters manually.
+
+6. BACKUP RESTORE REJECTED
+- Confirm the file is a Church Manager Backup v1 JSON backup.
+- Do not edit backup files in a text editor.
+- Use a backup created by the Church Manager backup tools.
+
+7. HOST COMPUTER IS OFF
+Remote shared access is unavailable. Turn on the host and start Church Manager.
+
+8. PORT 3000 ALREADY IN USE
+Run STOP-CHURCH-MANAGER.bat and then start Church Manager again. If another unrelated application owns port 3000, identify it before changing anything.
+
+9. NEVER SOLVE CONNECTION PROBLEMS BY PORT-FORWARDING TCP 3000 TO THE INTERNET.

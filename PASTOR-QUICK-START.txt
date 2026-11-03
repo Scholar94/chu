@@ -1,0 +1,32 @@
+CHURCH MANAGER — PASTOR QUICK START
+===================================
+
+NORMAL DAILY USE
+1. Turn on the designated Church Manager host computer.
+2. Double-click the Church Manager desktop shortcut.
+3. Wait for the login page to open.
+4. Sign in.
+5. Staff use their own accounts.
+
+REMOTE PHONE
+1. Make sure the host computer is ON.
+2. Make sure Church Manager is running.
+3. Turn on Tailscale on the phone.
+4. Open the Church Manager Tailscale address in the phone browser.
+5. Sign in.
+
+BACKUP
+Owner > Backup & Restore > Create Backup Now.
+Also keep the automatic/scheduled backup folder copied to an external location.
+
+IF THE APP DOES NOT OPEN
+1. Confirm the host computer is on.
+2. Double-click the desktop shortcut again.
+3. If necessary, run START-CHURCH-MANAGER.bat.
+4. Open http://localhost:3000 manually.
+
+IF PHONE CANNOT CONNECT
+1. Confirm Tailscale is ON on the phone.
+2. Confirm the host computer is ON.
+3. Confirm Church Manager is running.
+4. Do not use the church LAN IP from outside the church.

@@ -1,0 +1,28 @@
+CHURCH MANAGER — WINDOWS FIREWALL GUIDE
+=======================================
+
+Run INSTALL-FIREWALL.bat as Administrator.
+
+It creates two inbound rules for TCP 3000:
+1. Church Manager LAN TCP 3000 — limited to the local subnet.
+2. Church Manager Tailscale TCP 3000 — limited to 100.64.0.0/10, the Tailscale IPv4 range.
+
+This is intentionally different from opening TCP 3000 to every Internet address.
+
+DO NOT
+- Do not create a router port-forward for TCP 3000.
+- Do not publish the server directly to the public Internet.
+- Do not disable Windows Firewall to solve a connection problem.
+
+IF LAN DOES NOT CONNECT
+1. Confirm the host server is running.
+2. Confirm both computers are on the same LAN.
+3. Confirm the host IP with ipconfig.
+4. Run INSTALL-FIREWALL.bat again as Administrator.
+5. Test http://HOST-LAN-IP:3000 from the staff computer.
+
+IF TAILSCALE DOES NOT CONNECT
+1. Confirm Tailscale is connected on both devices.
+2. Confirm the host's Tailscale IP with tailscale ip -4.
+3. Confirm the firewall rule exists.
+4. Test the 100.x.x.x address, not the 192.168.x.x LAN address.

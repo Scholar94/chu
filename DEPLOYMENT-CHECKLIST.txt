@@ -1,0 +1,43 @@
+CHURCH MANAGER — DEPLOYMENT CHECKLIST
+=====================================
+
+VENDOR
+[ ] Generate 1-Year or Lifetime license.
+[ ] Record customer/church name.
+[ ] Keep private signing key secure.
+[ ] Send only activation key.
+
+HOST
+[ ] Install Node.js LTS.
+[ ] Extract LAN + Tailscale edition.
+[ ] Run firewall installer as Administrator.
+[ ] Create desktop shortcut.
+[ ] Activate license.
+[ ] Create Owner account.
+[ ] Create staff accounts.
+
+LAN
+[ ] Test from one staff computer.
+[ ] Confirm role restrictions.
+
+TAILSCALE
+[ ] Install on host.
+[ ] Install on authorized phone/laptop.
+[ ] Confirm same tailnet.
+[ ] Record host 100.x.x.x address.
+[ ] Test remote login.
+[ ] Confirm no router port forwarding.
+
+BACKUP
+[ ] Create manual backup.
+[ ] Install daily scheduled backup.
+[ ] Run EXPORT-BACKUPS.bat.
+[ ] Copy backups off the host computer.
+[ ] Test restore with non-production/test records.
+
+GO-LIVE
+[ ] Owner knows how to start the server.
+[ ] Owner knows how to create/reset staff accounts.
+[ ] Owner knows how to back up.
+[ ] Owner knows how to restore.
+[ ] Owner understands host-offline behavior.

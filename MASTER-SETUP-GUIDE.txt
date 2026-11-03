@@ -1,0 +1,149 @@
+CHURCH MANAGER — MASTER SETUP & DEPLOYMENT GUIDE
+================================================
+
+PURPOSE
+This guide takes you from vendor license generation to a working church installation with LAN, Tailscale remote access, staff accounts and backups.
+
+PART 1 — CHOOSE THE EDITION
+----------------------------
+OFFLINE EDITION
+Use when the church needs one computer only and does not need shared records across devices.
+
+LAN + TAILSCALE EDITION
+Use when the church needs a central shared database for pastor/owner, office staff and remote access.
+
+Do not run both editions against the same data. They are independent systems.
+
+PART 2 — VENDOR LICENSE GENERATION
+-----------------------------------
+1. Open License-Generator on the vendor computer.
+2. Run GENERATE-1YEAR.bat for a 1-Year license or GENERATE-LIFETIME.bat for a Lifetime license.
+3. Enter the church name.
+4. Enter an optional customer reference.
+5. Copy only the generated activation key.
+6. Send the key to the church through WhatsApp or another trusted channel.
+7. Keep vendor-private-key.pem private.
+8. Keep license-history.txt as your internal record.
+
+The customer software contains only the vendor public key. It does not contain the private signing key.
+
+PART 3 — HOST COMPUTER SETUP
+-----------------------------
+1. Choose the church's main Windows computer as the designated host.
+2. Install a current Node.js LTS release on that computer.
+3. Extract Church-Manager-LAN-Tailscale.
+4. Right-click INSTALL-FIREWALL.bat and choose Run as administrator.
+5. Run CREATE-DESKTOP-SHORTCUT.bat once.
+6. Use the new Church Manager desktop shortcut for normal startup.
+7. The shortcut starts the server and opens http://localhost:3000.
+8. Paste the vendor license key.
+9. Complete first-run Owner setup.
+10. Create staff accounts.
+
+If Windows Script Host is disabled, do not use START-SILENT.vbs. Use the desktop shortcut created by CREATE-DESKTOP-SHORTCUT.bat or START-CHURCH-MANAGER.bat.
+
+PART 4 — LAN SETUP
+-------------------
+1. Connect the host and staff computers to the same trusted church LAN/Wi-Fi.
+2. On the host run ipconfig.
+3. Find the host's IPv4 address, for example 192.168.1.20.
+4. On a staff computer open http://192.168.1.20:3000 using the actual address.
+5. Sign in with the staff account created by the Owner.
+6. Confirm that the staff member sees only the sections permitted by their role.
+
+The Windows firewall script limits port 3000 to trusted local subnet traffic and the Tailscale address range.
+
+PART 5 — TAILSCALE REMOTE ACCESS
+---------------------------------
+1. Install Tailscale on the host.
+2. Sign in to the same trusted tailnet on the host and authorized phone/laptop.
+3. Keep Tailscale connected on both devices.
+4. On the host run: tailscale ip -4
+5. Note the 100.x.x.x address.
+6. On the authorized remote device open http://HOST-TAILSCALE-IP:3000.
+7. Test sign-in.
+8. Do not use the church LAN address when the phone is outside the church.
+9. Do not port-forward TCP 3000 on the router.
+
+If the host is powered off or the Church Manager server is not running, the shared remote system is unavailable. This is expected.
+
+PART 6 — STAFF AND PERMISSIONS
+-------------------------------
+Owner
+- Full access.
+- Creates staff accounts.
+- Resets staff passwords.
+- Views audit records.
+- Performs backup and restore.
+
+Admin
+- Dashboard, members, attendance, events, giving, announcements and reports.
+
+Secretary
+- Dashboard, members, attendance, events and announcements.
+
+Treasurer
+- Dashboard, giving and reports.
+
+Worker
+- Dashboard, members and attendance.
+
+The Owner should create separate accounts for each staff member. Do not share one account between people.
+
+PART 7 — BACKUP STRATEGY
+-------------------------
+There are three backup methods:
+
+A. Automatic server backup
+The server creates a daily backup when it is running. The backup is stored in the server's backups folder. The server retains the most recent 30 backup files.
+
+B. Windows daily scheduled backup
+Run INSTALL-DAILY-BACKUP.bat to create a Windows Task Scheduler task at 11:55 PM. This backup can run even if the web interface is not open, provided the computer is on.
+
+C. Manual backup
+Owner > Backup & Restore > Create Backup Now.
+
+IMPORTANT: A backup on the same physical computer is not enough for disaster recovery. Use EXPORT-BACKUPS.bat or manually copy the backups folder to an external drive or secure cloud storage.
+
+PART 8 — RESTORE
+-----------------
+1. Owner signs in.
+2. Open Backup & Restore.
+3. Select a known-good JSON backup file.
+4. Click Restore Selected Backup.
+5. Confirm the warning.
+6. The system creates a pre-restore safety backup first.
+7. The restored data replaces the current records.
+8. Sign in again after restore.
+
+Never restore an unknown or modified backup file.
+
+PART 9 — PRE-LAUNCH TEST
+-------------------------
+Before real church records are entered, test all of the following:
+[ ] License activation works.
+[ ] Owner setup works.
+[ ] Owner login works.
+[ ] Staff account creation works.
+[ ] Staff role restrictions work.
+[ ] LAN computer can connect.
+[ ] Tailscale phone can connect.
+[ ] Phone can sign in.
+[ ] Host shutdown correctly makes shared access unavailable.
+[ ] Server restart restores access.
+[ ] Manual backup works.
+[ ] Scheduled backup task exists.
+[ ] Backup can be copied to external storage.
+[ ] Backup restore works on test data.
+[ ] Windows firewall does not expose port 3000 publicly.
+
+PART 10 — OPERATING RULES
+--------------------------
+1. Keep the host computer protected by a strong Windows password.
+2. Keep Windows and Node.js updated.
+3. Keep Tailscale membership limited to authorized devices/users.
+4. Do not expose TCP 3000 through router port forwarding.
+5. Do not share Owner credentials.
+6. Protect backup files because they contain church records and password hashes.
+7. Keep the vendor private signing key off customer computers.
+8. Test restoration periodically rather than assuming backups are usable.

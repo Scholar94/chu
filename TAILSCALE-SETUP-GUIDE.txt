@@ -1,0 +1,36 @@
+CHURCH MANAGER — TAILSCALE REMOTE ACCESS GUIDE
+===============================================
+
+PURPOSE
+Tailscale provides a private network path between the church host and authorized remote devices. Church Manager does not require public port forwarding.
+
+HOST
+1. Install Tailscale on the designated Church Manager host computer.
+2. Sign in to the church's trusted Tailscale account/tailnet.
+3. Keep the device approved and connected.
+4. Run Church Manager.
+5. Open PowerShell or Command Prompt and run:
+   tailscale ip -4
+6. Record the 100.x.x.x address.
+
+PHONE OR REMOTE LAPTOP
+1. Install Tailscale.
+2. Sign in to the same trusted tailnet.
+3. Turn Tailscale on.
+4. Open a browser.
+5. Enter:
+   http://HOST-TAILSCALE-IP:3000
+   Example format only: http://100.x.x.x:3000
+6. Sign in using the authorized staff/Owner account.
+
+PHONE TEST
+Do the first test while the host is powered on and Church Manager is running. If the phone can open the login screen, the Tailscale route is working.
+
+IMPORTANT
+- The host must remain powered on for shared remote access.
+- Do not use the LAN 192.168.x.x address from outside the church.
+- Do not port-forward TCP 3000 on the church router.
+- Do not add unknown devices/users to the tailnet.
+
+IF WINDOWS SCRIPT HOST IS DISABLED
+Use CREATE-DESKTOP-SHORTCUT.bat and the desktop Church Manager shortcut instead of START-SILENT.vbs.

@@ -1,0 +1,46 @@
+CHURCH MANAGER — BACKUP & RESTORE GUIDE
+=======================================
+
+AUTOMATIC BACKUP
+The LAN + Tailscale server creates a daily backup while the server is running. Files are saved in:
+Church-Manager-LAN-Tailscale\backups
+
+SCHEDULED BACKUP
+For a Windows-level daily backup even when the web app is not open:
+1. Right-click INSTALL-DAILY-BACKUP.bat.
+2. Run as administrator if Windows requests it.
+3. The task is scheduled for 11:55 PM daily.
+4. Backups are saved in the same backups folder.
+
+MANUAL BACKUP
+Owner login > Backup & Restore > Create Backup Now.
+
+DOWNLOAD A BACKUP
+Owner login > Backup & Restore > choose Download beside a backup file.
+
+COPY OFF THE COMPUTER
+Run EXPORT-BACKUPS.bat. It copies JSON backups to:
+Desktop\Church Manager Backups
+Then copy that folder to an external drive or secure cloud storage.
+
+RESTORE THROUGH THE APP
+1. Sign in as Owner.
+2. Open Backup & Restore.
+3. Choose the backup JSON file.
+4. Click Restore Selected Backup.
+5. Confirm.
+6. A pre-restore backup is created automatically.
+7. Sign in again after restoration.
+
+DISASTER RECOVERY
+If Windows fails:
+1. Preserve the external backup copy.
+2. Reinstall Windows if necessary.
+3. Install Node.js LTS.
+4. Reinstall Church Manager LAN + Tailscale.
+5. Start the server and complete a temporary setup if needed.
+6. Use the Owner restore screen to restore the backup.
+7. Test records before returning to normal operation.
+
+SECURITY
+Backups contain church data and password hashes. Treat them as confidential. Do not send backups through public groups or to untrusted people.
